@@ -1,16 +1,51 @@
 import Grid from "@mui/material/Grid";
 import { Container } from "@mui/material";
 import WorkerCard from "../components/Card";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
+import { server } from "../axios";
+
+interface User {
+  id: number;
+  age: number;
+  firstName: string;
+  lastName: string;
+  image: string;
+  phone: string;
+  username: string;
+  gender: string;
+  email: string;
+}
 
 const Home: FC = () => {
+  const [workers, setWorkers] = useState<User[]>([]);
+  const [, setError] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await server.get("/");
+        setWorkers(data?.users);
+      } catch (err: any) {
+        setError(err?.response?.data?.message || err?.message);
+      }
+    })();
+  }, []);
+
   return (
     <>
       <Container className="main" maxWidth="xl">
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          {[...Array(10)].map((index) => (
-            <Grid key={index} item xs={4} md={3}>
-              <WorkerCard />
+        <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          {workers.map((worker) => (
+            <Grid key={worker.id} item xs={12} sm={6} md={4} lg={3}>
+              <WorkerCard
+                name={worker.firstName + " " + worker.lastName}
+                phone={worker.phone}
+                email={worker.email}
+                image={worker.image}
+                age={worker.age}
+                gender={worker.gender}
+                id={worker.id}
+              />
             </Grid>
           ))}
         </Grid>

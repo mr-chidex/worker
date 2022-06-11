@@ -5,36 +5,65 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
 
-const WorkerCard: FC = () => {
+interface Props {
+  id: number;
+  name: string;
+  website?: string;
+  email: string;
+  phone: string;
+  age: number;
+  gender: string;
+  image?: string;
+}
+
+const WorkerCard: FC<Props> = ({
+  id,
+  name,
+  age,
+  gender,
+  phone,
+  email,
+  image,
+}) => {
+  const navigate = useNavigate();
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         alt="green iguana"
         height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
+        image={image}
       />
-      <CardContent>
+      <CardContent style={{ cursor: "pointer" }}>
         <Typography gutterBottom variant="h5" component="div">
-          James Ken
+          {name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Email: email@gmail.com
+          Email: {email}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Age: email@gmail.com
+          Phone: {phone}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Email: email@gmail.com
+          Age: {age}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Gender: {gender}
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions style={{ display: "flex", justifyContent: "center" }}>
         <Button variant="contained" size="small">
           Order
         </Button>
-        <Button variant="contained" size="small">
-          Learn More
+        <Button
+          onClick={() => navigate(`/${id}`)}
+          variant="contained"
+          size="small"
+        >
+          More
         </Button>
       </CardActions>
     </Card>
