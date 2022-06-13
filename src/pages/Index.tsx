@@ -1,8 +1,8 @@
 import Grid from "@mui/material/Grid";
-import { Container } from "@mui/material";
 import WorkerCard from "../components/Card";
 import { FC, useEffect, useState } from "react";
 import { server } from "../axios";
+import Layout from "../components/Layout";
 
 interface User {
   id: number;
@@ -33,7 +33,7 @@ const Home: FC = () => {
 
   return (
     <>
-      <Container className="main" maxWidth="xl">
+      <Layout>
         <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {workers.map((worker) => (
             <Grid key={worker.id} item xs={12} sm={6} md={4} lg={3}>
@@ -49,7 +49,7 @@ const Home: FC = () => {
             </Grid>
           ))}
         </Grid>
-      </Container>
+      </Layout>
     </>
   );
 };

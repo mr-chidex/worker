@@ -54,9 +54,12 @@ const WorkerCard: FC<Props> = ({
           Gender: {gender}
         </Typography>
       </CardContent>
-      <CardActions style={{ display: "flex", justifyContent: "center" }}>
+      <CardActions
+        className="card-actions"
+        style={{ display: "flex", justifyContent: "center" }}
+      >
         <Button variant="contained" size="small">
-          Order
+          Add To Order
         </Button>
         <Button
           onClick={() => navigate(`/${id}`)}

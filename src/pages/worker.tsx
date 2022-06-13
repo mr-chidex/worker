@@ -1,10 +1,10 @@
-import { Container, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import React, { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { useParams } from "react-router-dom";
 import { server } from "../axios";
+import Layout from "../components/Layout";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -38,7 +38,7 @@ const Worker = () => {
   }, [id]);
 
   return (
-    <Container maxWidth="xl" className="main">
+    <Layout>
       <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid item xs={12} sm={6} md={4}>
           <Item>
@@ -61,7 +61,7 @@ const Worker = () => {
           <Item>xs=8</Item>
         </Grid>
       </Grid>
-    </Container>
+    </Layout>
   );
 };
 

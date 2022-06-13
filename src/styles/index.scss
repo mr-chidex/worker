@@ -13,17 +13,16 @@ code {
 }
 
 header {
-  padding: 0 2rem;
-  background-color: #111;
   color: #fff;
+  width: 100%;
 
   a {
     text-decoration: none;
-    color: #ccc;
+    color: #fff;
   }
 
   a.active {
-    color: #fff;
+    color: rgb(243, 243, 243);
   }
 
   nav {
@@ -46,6 +45,10 @@ header {
 .main {
   margin: 1rem 0;
   min-height: 40rem;
+}
+
+.card-actions button {
+  font-weight: bold;
 }
 
 footer {
