@@ -1,3 +1,5 @@
+import { LightMode } from "@mui/icons-material";
+import { Chip, IconButton } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Logo from "./Logo";
 
@@ -7,17 +9,21 @@ const Header = () => {
       <nav>
         <Logo />
 
-        <ul>
-          <li>
-            <NavLink
-              className={({ isActive }) => (isActive ? "active" : undefined)}
-              to="/orders"
-            >
+        <div>
+          <NavLink
+            className={({ isActive }) => (isActive ? "active" : undefined)}
+            to="/orders"
+          >
+            <div className="order">
               Order
-            </NavLink>
-          </li>
-          <li>Mode</li>
-        </ul>
+              <Chip label="0" component="a" clickable />
+            </div>
+          </NavLink>
+
+          <IconButton>
+            <LightMode />
+          </IconButton>
+        </div>
       </nav>
     </header>
   );

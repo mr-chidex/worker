@@ -35,28 +35,39 @@ const Home: FC = () => {
     })();
   }, []);
 
-  return !loading ? (
+  const orderHandler = (id: number) => {
+    alert("order - " + id);
+  };
+
+  return (
     <>
       <Layout>
-        <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          {workers.map((worker) => (
-            <Grid key={worker.id} item xs={12} sm={6} md={4} lg={3}>
-              <WorkerCard
-                name={worker.firstName + " " + worker.lastName}
-                phone={worker.phone}
-                email={worker.email}
-                image={worker.image}
-                age={worker.age}
-                gender={worker.gender}
-                id={worker.id}
-              />
-            </Grid>
-          ))}
-        </Grid>
+        {!loading ? (
+          <Grid
+            container
+            rowSpacing={3}
+            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+          >
+            {workers.map((worker) => (
+              <Grid key={worker.id} item xs={12} sm={6} md={4} lg={3}>
+                <WorkerCard
+                  name={worker.firstName + " " + worker.lastName}
+                  phone={worker.phone}
+                  email={worker.email}
+                  image={worker.image}
+                  age={worker.age}
+                  gender={worker.gender}
+                  id={worker.id}
+                  orderHandler={() => orderHandler(worker.id)}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        ) : (
+          <Loader />
+        )}
       </Layout>
     </>
-  ) : (
-    <Loader />
   );
 };
 

@@ -16,6 +16,7 @@ interface Props {
   age: number;
   gender: string;
   image?: string;
+  orderHandler: () => void;
 }
 
 const WorkerCard: FC<Props> = ({
@@ -26,6 +27,7 @@ const WorkerCard: FC<Props> = ({
   phone,
   email,
   image,
+  orderHandler,
 }) => {
   const navigate = useNavigate();
 
@@ -58,8 +60,8 @@ const WorkerCard: FC<Props> = ({
         className="card-actions"
         style={{ display: "flex", justifyContent: "center" }}
       >
-        <Button variant="contained" size="small">
-          Add To Order
+        <Button variant="contained" onClick={orderHandler} size="small">
+          Order Worker
         </Button>
         <Button
           onClick={() => navigate(`/${id}`)}

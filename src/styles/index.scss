@@ -28,15 +28,14 @@ header {
   nav {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
-    ul {
-      list-style: none;
-      text-align: right;
-      flex: 1;
+    div {
+      display: flex;
+      align-items: center;
 
-      li {
-        display: inline-block;
-        margin-left: 2rem;
+      .order {
+        margin-right: 1rem;
       }
     }
   }

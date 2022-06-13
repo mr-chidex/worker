@@ -1,5 +1,5 @@
-import { Grid } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import { Box, Button, Grid } from "@mui/material";
+import { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { useParams } from "react-router-dom";
@@ -49,43 +49,53 @@ const Worker = () => {
     })();
   }, [id]);
 
-  console.log(user);
-
-  return !loading ? (
+  return (
     <Layout>
-      <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid item xs={12} sm={4} md={4}>
-          <Item>
-            <img
-              src={user?.image}
-              alt={user?.firstName}
-              height="100"
-              width="100"
-            />
-            <p>Name: {`${user?.firstName} ${user?.lastName}`}</p>
-            <p>Email: {user?.email}</p>
-            <p>Phone: {user?.phone}</p>
-            <p>Gender: {user?.gender}</p>
-            <p>Age: {user?.age}</p>
-            <p>DOB: {user?.birthDate}</p>
-            <p>University: {user?.university}</p>
-            <p>Domain: {user?.company?.department}</p>
-          </Item>
-        </Grid>
-        <Grid item xs={12} sm={8} md={8}>
-          <Item>
-            <MapView
-              location={{
-                lng: user?.address?.coordinates?.lng,
-                lat: user?.address?.coordinates?.lat,
+      {!loading ? (
+        <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          <Grid item xs={12} sm={4} md={4}>
+            <Item>
+              <img
+                src={user?.image}
+                alt={user?.firstName}
+                height="100"
+                width="100"
+              />
+              <p>Name: {`${user?.firstName} ${user?.lastName}`}</p>
+              <p>Email: {user?.email}</p>
+              <p>Phone: {user?.phone}</p>
+              <p>Gender: {user?.gender}</p>
+              <p>Age: {user?.age}</p>
+              <p>DOB: {user?.birthDate}</p>
+              <p>University: {user?.university}</p>
+              <p>Domain: {user?.company?.department}</p>
+            </Item>
+
+            <Box
+              sx={{
+                my: 2,
               }}
-            />
-          </Item>
+            >
+              <Button fullWidth variant="contained" size="small">
+                Order Worker
+              </Button>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={8} md={8}>
+            <Item>
+              <MapView
+                location={{
+                  lng: user?.address?.coordinates?.lng,
+                  lat: user?.address?.coordinates?.lat,
+                }}
+              />
+            </Item>
+          </Grid>
         </Grid>
-      </Grid>
+      ) : (
+        <Loader />
+      )}
     </Layout>
-  ) : (
-    <Loader />
   );
 };
 
