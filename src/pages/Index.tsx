@@ -3,6 +3,7 @@ import WorkerCard from "../components/Card";
 import { FC, useEffect, useState } from "react";
 import { server } from "../axios";
 import Layout from "../components/Layout";
+import Loader from "../components/Loader";
 
 interface User {
   id: number;
@@ -19,19 +20,22 @@ interface User {
 const Home: FC = () => {
   const [workers, setWorkers] = useState<User[]>([]);
   const [, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       try {
         const { data } = await server.get("/");
         setWorkers(data?.users);
+        setLoading(false);
       } catch (err: any) {
         setError(err?.response?.data?.message || err?.message);
+        setLoading(false);
       }
     })();
   }, []);
 
-  return (
+  return !loading ? (
     <>
       <Layout>
         <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
@@ -51,6 +55,8 @@ const Home: FC = () => {
         </Grid>
       </Layout>
     </>
+  ) : (
+    <Loader />
   );
 };
 

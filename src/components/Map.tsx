@@ -20,7 +20,7 @@ const MapView: FC<Props> = ({ location }) => {
       <Marker position={center} />
     </GoogleMap>
   ) : (
-    <>Loading...</>
+    <>Map Loading...</>
   );
 };
 

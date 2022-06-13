@@ -27,6 +27,9 @@ interface User {
   gender: string;
   email: string;
   address: any;
+  birthDate: string;
+  university: string;
+  company: any;
 }
 
 const Worker = () => {
@@ -46,6 +49,8 @@ const Worker = () => {
     })();
   }, [id]);
 
+  console.log(user);
+
   return !loading ? (
     <Layout>
       <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
@@ -59,10 +64,12 @@ const Worker = () => {
             />
             <p>Name: {`${user?.firstName} ${user?.lastName}`}</p>
             <p>Email: {user?.email}</p>
-            <p>Email: {user?.phone}</p>
-            <p>Email: {user?.gender}</p>
-            <p>Email: {user?.age}</p>
-            <p>Email: {user?.email}</p>
+            <p>Phone: {user?.phone}</p>
+            <p>Gender: {user?.gender}</p>
+            <p>Age: {user?.age}</p>
+            <p>DOB: {user?.birthDate}</p>
+            <p>University: {user?.university}</p>
+            <p>Domain: {user?.company?.department}</p>
           </Item>
         </Grid>
         <Grid item xs={12} sm={8} md={8}>

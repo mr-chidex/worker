@@ -10,7 +10,7 @@ const Loader: React.FC = () => {
         height: "100vh",
       }}
     >
-      <h1>Map Loading...</h1>
+      <h1>Loading...</h1>
     </div>
   );
 };
