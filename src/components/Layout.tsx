@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -9,6 +9,9 @@ import Fab from "@mui/material/Fab";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Fade from "@mui/material/Fade";
 import Header from "./Header";
+import { AppContext } from "./Context";
+import { theme } from "../utils/theme";
+import Footer from "../components/Footer";
 
 interface Props {
   window?: () => Window;
@@ -49,23 +52,34 @@ function ScrollTop(props: Props) {
 }
 
 export default function Layout(props: Props) {
+  const { state } = useContext(AppContext);
+
   return (
     <>
-      <CssBaseline />
-      <AppBar>
-        <Toolbar>
-          <Header />
-        </Toolbar>
-      </AppBar>
-      <Toolbar id="back-to-top-anchor" />
-      <Container className="main" maxWidth="xl">
-        <Box sx={{ my: 4 }}>{props.children}</Box>
-      </Container>
-      <ScrollTop {...props}>
-        <Fab size="small" aria-label="scroll back to top">
-          <KeyboardArrowUpIcon />
-        </Fab>
-      </ScrollTop>
+      <div
+        style={{
+          background: state.theme === "light" ? theme.light : theme.dark,
+          paddingTop: "10px",
+        }}
+      >
+        <CssBaseline />
+        <AppBar>
+          <Toolbar>
+            <Header />
+          </Toolbar>
+        </AppBar>
+        <Toolbar id="back-to-top-anchor" style={{ background: "blue" }} />
+
+        <Container className="main" maxWidth="xl">
+          <Box sx={{ my: 4 }}>{props.children}</Box>
+          <Footer />
+        </Container>
+        <ScrollTop {...props}>
+          <Fab size="small" aria-label="scroll back to top">
+            <KeyboardArrowUpIcon />
+          </Fab>
+        </ScrollTop>
+      </div>
     </>
   );
 }

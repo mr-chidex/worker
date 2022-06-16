@@ -88,7 +88,12 @@ const Orders = () => {
             </Button>
           </>
         ) : (
-          <h2 style={{ textAlign: "center" }}>
+          <h2
+            style={{
+              textAlign: "center",
+              color: `${state.theme === "dark" ? "#fff" : "black"}`,
+            }}
+          >
             No workers added to order list
           </h2>
         )}

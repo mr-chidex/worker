@@ -1,4 +1,4 @@
-import { ADDWORKER, ORDERPLACED, REMOVEWORKER } from "./constants";
+import { ADDWORKER, CHANGETHEME, ORDERPLACED, REMOVEWORKER } from "./constants";
 import { Worker } from "./types";
 
 export const orderReducer = (
@@ -16,20 +16,26 @@ export const orderReducer = (
       const newOrders: Worker[] = [...state.orders, action.payload];
       localStorage.setItem("workers", JSON.stringify(newOrders));
 
-      return { orders: newOrders };
+      return { ...state, orders: newOrders };
 
     case REMOVEWORKER:
       const updatedOrders = state.orders.filter(
         (order: Worker) => order.id !== action.payload
       );
       localStorage.setItem("workers", JSON.stringify(updatedOrders));
-      return {
-        orders: updatedOrders,
-      };
+      return { ...state, orders: updatedOrders };
 
     case ORDERPLACED:
       localStorage.removeItem("workers");
-      return { orders: [] };
+      return { ...state, orders: [] };
+
+    case CHANGETHEME:
+      if (state.payload === "dark") {
+        localStorage.setItem("theme", "dark");
+      } else {
+        localStorage.setItem("theme", "light");
+      }
+      return { ...state, theme: action.payload };
     default:
       return state;
   }

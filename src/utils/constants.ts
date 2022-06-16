@@ -1,3 +1,4 @@
 export const ADDWORKER = "ADDWORKER";
 export const REMOVEWORKER = "REMOVEWORKER";
 export const ORDERPLACED = "ORDERPLACED";
+export const CHANGETHEME = "CHANGETHEME";

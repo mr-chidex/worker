@@ -2,11 +2,15 @@ import { LightMode } from "@mui/icons-material";
 import { Chip, IconButton } from "@mui/material";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { CHANGETHEME } from "../utils/constants";
 import { AppContext } from "./Context";
 import Logo from "./Logo";
 
 const Header = () => {
-  const { state } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
+  const changeTheme = (type: string) => {
+    dispatch({ type: CHANGETHEME, payload: type });
+  };
 
   return (
     <header>
@@ -23,10 +27,15 @@ const Header = () => {
               <Chip label={state.orders.length} component="a" clickable />
             </div>
           </NavLink>
-
-          <IconButton>
-            <LightMode />
-          </IconButton>
+          {state.theme === "dark" ? (
+            <IconButton onClick={() => changeTheme("light")}>
+              <LightMode sx={{ color: "#fff" }} />
+            </IconButton>
+          ) : (
+            <IconButton onClick={() => changeTheme("dark")}>
+              <LightMode sx={{ color: "#111" }} />
+            </IconButton>
+          )}
         </div>
       </nav>
     </header>

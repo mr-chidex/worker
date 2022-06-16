@@ -1,5 +1,5 @@
 import { FC, createContext } from "react";
-import Footer from "./components/Footer";
+
 import Context from "./components/Context";
 import Routes from "./Routes";
 
@@ -9,7 +9,6 @@ const App: FC = () => {
   return (
     <Context>
       <Routes />
-      <Footer />
     </Context>
   );
 };

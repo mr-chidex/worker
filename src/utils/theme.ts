@@ -29,3 +29,8 @@ export const getDesignTokens = (mode: PaletteMode) => ({
     },
   },
 });
+
+export const theme = {
+  dark: "#383838",
+  light: "#ccc",
+};

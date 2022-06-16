@@ -8,12 +8,17 @@ interface Props {
 
 type InitialStateType = {
   orders: Worker[];
+  theme: string;
 };
 
 const initialState = {
   orders: localStorage.getItem("workers")
     ? JSON.parse(localStorage.getItem("workers")!)
     : [],
+
+  theme: localStorage.getItem("theme")
+    ? localStorage.getItem("theme")!
+    : "light",
 };
 
 const AppContext = createContext<{
