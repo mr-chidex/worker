@@ -1,5 +1,6 @@
 import React, { FC, createContext, useReducer, Dispatch } from "react";
 import { orderReducer } from "../utils/reducer";
+import { Worker } from "../utils/types";
 
 interface Props {
   children: React.ReactNode;
@@ -9,7 +10,11 @@ type InitialStateType = {
   orders: Worker[];
 };
 
-const initialState = { orders: [] };
+const initialState = {
+  orders: localStorage.getItem("workers")
+    ? JSON.parse(localStorage.getItem("workers")!)
+    : [],
+};
 
 const AppContext = createContext<{
   state: InitialStateType;

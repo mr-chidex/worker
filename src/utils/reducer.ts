@@ -1,4 +1,4 @@
-import { ADDWORKER, REMOVEWORKER } from "./constants";
+import { ADDWORKER, ORDERPLACED, REMOVEWORKER } from "./constants";
 import { Worker } from "./types";
 
 export const orderReducer = (
@@ -13,12 +13,23 @@ export const orderReducer = (
 
       if (isExist) return { orders: state.orders };
 
-      return { orders: [...state.orders, action.payload] };
+      const newOrders: Worker[] = [...state.orders, action.payload];
+      localStorage.setItem("workers", JSON.stringify(newOrders));
+
+      return { orders: newOrders };
 
     case REMOVEWORKER:
-      const index = state.orders.findIndex(action.payload?.id);
-      const updatedOrders = state.orders.splice(index, 1);
-      return { orders: updatedOrders };
+      const updatedOrders = state.orders.filter(
+        (order: Worker) => order.id !== action.payload
+      );
+      localStorage.setItem("workers", JSON.stringify(updatedOrders));
+      return {
+        orders: updatedOrders,
+      };
+
+    case ORDERPLACED:
+      localStorage.removeItem("workers");
+      return { orders: [] };
     default:
       return state;
   }
