@@ -56,30 +56,29 @@ export default function Layout(props: Props) {
 
   return (
     <>
+      <CssBaseline />
+      <AppBar>
+        <Toolbar>
+          <Header />
+        </Toolbar>
+      </AppBar>
+      <Toolbar id="back-to-top-anchor" style={{ background: "blue" }} />
       <div
         style={{
           background: state.theme === "light" ? theme.light : theme.dark,
           paddingTop: "10px",
         }}
       >
-        <CssBaseline />
-        <AppBar>
-          <Toolbar>
-            <Header />
-          </Toolbar>
-        </AppBar>
-        <Toolbar id="back-to-top-anchor" style={{ background: "blue" }} />
-
         <Container className="main" maxWidth="xl">
           <Box sx={{ my: 4 }}>{props.children}</Box>
           <Footer />
         </Container>
-        <ScrollTop {...props}>
-          <Fab size="small" aria-label="scroll back to top">
-            <KeyboardArrowUpIcon />
-          </Fab>
-        </ScrollTop>
       </div>
+      <ScrollTop {...props}>
+        <Fab size="small" aria-label="scroll back to top">
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </ScrollTop>
     </>
   );
 }
