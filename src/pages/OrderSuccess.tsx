@@ -18,7 +18,7 @@ const OrderSuccess = () => {
       <div
         style={{
           width: "60%",
-          minWidth: "400px",
+          minWidth: "350px",
           display: "grid",
           placeItems: "center",
           margin: "0 auto",
@@ -26,12 +26,12 @@ const OrderSuccess = () => {
         }}
       >
         <Paper sx={{ padding: "1rem", width: "80%" }}>
-          <h2 style={{ textAlign: "center" }}>Order Successfully placed</h2>
+          <h3 style={{ textAlign: "center" }}>Order Successfully Placed</h3>
 
           <div style={{ textAlign: "center" }}>
             <CheckCircleIcon
               color="success"
-              sx={{ fontSize: "5rem" }}
+              sx={{ fontSize: "3rem" }}
               fontSize="large"
             />
           </div>

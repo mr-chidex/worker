@@ -11,7 +11,6 @@ import Fade from "@mui/material/Fade";
 import Header from "./Header";
 import { AppContext } from "./Context";
 import { theme } from "../utils/theme";
-import Footer from "../components/Footer";
 
 interface Props {
   window?: () => Window;
@@ -71,7 +70,6 @@ export default function Layout(props: Props) {
       >
         <Container className="main" maxWidth="xl">
           <Box sx={{ my: 4 }}>{props.children}</Box>
-          <Footer />
         </Container>
       </div>
       <ScrollTop {...props}>

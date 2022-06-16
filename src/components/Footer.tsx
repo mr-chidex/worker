@@ -1,20 +1,19 @@
-import { FC, useContext } from "react";
-import { AppContext } from "./Context";
+import { FC } from "react";
 
 const Footer: FC = () => {
-  const { state } = useContext(AppContext);
-
   return (
-    <footer style={{ color: `${state.theme === "dark" ? "#fff" : "black"}` }}>
-      Designed by{" "}
-      <a
-        href="https://github.com/mr-chidex"
-        rel="noreferrer noopener"
-        target="_blank"
-        style={{ color: `${state.theme === "dark" ? "#fff" : "black"}` }}
-      >
-        mr-chidex
-      </a>
+    <footer>
+      <div>
+        {" "}
+        Designed by{" "}
+        <a
+          href="https://github.com/mr-chidex"
+          rel="noreferrer noopener"
+          target="_blank"
+        >
+          mr-chidex
+        </a>
+      </div>
     </footer>
   );
 };
