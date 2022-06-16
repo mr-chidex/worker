@@ -1,5 +1,5 @@
 import { Box, Button, Grid } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { useParams } from "react-router-dom";
@@ -7,6 +7,8 @@ import { server } from "../axios";
 import Layout from "../components/Layout";
 import MapView from "../components/Map";
 import Loader from "../components/Loader";
+import { AppContext } from "../components/Context";
+import { ADDWORKER } from "../utils/constants";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -16,7 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-interface User {
+interface Work {
   id: number;
   age: number;
   firstName: string;
@@ -34,20 +36,25 @@ interface User {
 
 const Worker = () => {
   const { id } = useParams();
-  const [user, setUser] = useState<User | null>(null);
+  const [worker, setWorker] = useState<Work | null>(null);
   const [loading, setLoading] = useState(true);
+  const { dispatch } = useContext(AppContext);
 
   useEffect(() => {
     (async () => {
       try {
         const { data } = await server.get(`/${id}`);
-        setUser(data);
+        setWorker(data);
         setLoading(false);
       } catch (err: any) {
         setLoading(false);
       }
     })();
   }, [id]);
+
+  const orderHandler = () => {
+    dispatch({ type: ADDWORKER, payload: worker });
+  };
 
   return (
     <Layout>
@@ -56,19 +63,19 @@ const Worker = () => {
           <Grid item xs={12} sm={4} md={4}>
             <Item>
               <img
-                src={user?.image}
-                alt={user?.firstName}
+                src={worker?.image}
+                alt={worker?.firstName}
                 height="100"
                 width="100"
               />
-              <p>Name: {`${user?.firstName} ${user?.lastName}`}</p>
-              <p>Email: {user?.email}</p>
-              <p>Phone: {user?.phone}</p>
-              <p>Gender: {user?.gender}</p>
-              <p>Age: {user?.age}</p>
-              <p>DOB: {user?.birthDate}</p>
-              <p>University: {user?.university}</p>
-              <p>Domain: {user?.company?.department}</p>
+              <p>Name: {`${worker?.firstName} ${worker?.lastName}`}</p>
+              <p>Email: {worker?.email}</p>
+              <p>Phone: {worker?.phone}</p>
+              <p>Gender: {worker?.gender}</p>
+              <p>Age: {worker?.age}</p>
+              <p>DOB: {worker?.birthDate}</p>
+              <p>University: {worker?.university}</p>
+              <p>Domain: {worker?.company?.department}</p>
             </Item>
 
             <Box
@@ -76,7 +83,12 @@ const Worker = () => {
                 my: 2,
               }}
             >
-              <Button fullWidth variant="contained" size="small">
+              <Button
+                fullWidth
+                variant="contained"
+                size="small"
+                onClick={() => orderHandler()}
+              >
                 Order Worker
               </Button>
             </Box>
@@ -85,8 +97,8 @@ const Worker = () => {
             <Item>
               <MapView
                 location={{
-                  lng: user?.address?.coordinates?.lng,
-                  lat: user?.address?.coordinates?.lat,
+                  lng: worker?.address?.coordinates?.lng,
+                  lat: worker?.address?.coordinates?.lat,
                 }}
               />
             </Item>

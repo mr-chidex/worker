@@ -1,9 +1,13 @@
 import { LightMode } from "@mui/icons-material";
 import { Chip, IconButton } from "@mui/material";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AppContext } from "./Context";
 import Logo from "./Logo";
 
 const Header = () => {
+  const { state } = useContext(AppContext);
+
   return (
     <header>
       <nav>
@@ -16,7 +20,7 @@ const Header = () => {
           >
             <div className="order">
               Order
-              <Chip label="0" component="a" clickable />
+              <Chip label={state.orders.length} component="a" clickable />
             </div>
           </NavLink>
 

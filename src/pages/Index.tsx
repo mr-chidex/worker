@@ -1,26 +1,20 @@
 import Grid from "@mui/material/Grid";
-import WorkerCard from "../components/Card";
 import { FC, useEffect, useState } from "react";
+import { useContext } from "react";
+
+import WorkerCard from "../components/Card";
 import { server } from "../axios";
 import Layout from "../components/Layout";
 import Loader from "../components/Loader";
-
-interface User {
-  id: number;
-  age: number;
-  firstName: string;
-  lastName: string;
-  image: string;
-  phone: string;
-  username: string;
-  gender: string;
-  email: string;
-}
+import { AppContext } from "../components/Context";
+import { Worker } from "../utils/types";
+import { ADDWORKER } from "../utils/constants";
 
 const Home: FC = () => {
-  const [workers, setWorkers] = useState<User[]>([]);
+  const [workers, setWorkers] = useState<Worker[]>([]);
   const [, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const { dispatch } = useContext(AppContext);
 
   useEffect(() => {
     (async () => {
@@ -35,8 +29,8 @@ const Home: FC = () => {
     })();
   }, []);
 
-  const orderHandler = (id: number) => {
-    alert("order - " + id);
+  const orderHandler = (worker: Worker) => {
+    dispatch({ type: ADDWORKER, payload: worker });
   };
 
   return (
@@ -58,7 +52,7 @@ const Home: FC = () => {
                   age={worker.age}
                   gender={worker.gender}
                   id={worker.id}
-                  orderHandler={() => orderHandler(worker.id)}
+                  orderHandler={() => orderHandler(worker)}
                 />
               </Grid>
             ))}

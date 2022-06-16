@@ -1,0 +1,2 @@
+export const ADDWORKER = "ADDWORKER";
+export const REMOVEWORKER = "REMOVEWORKER";
