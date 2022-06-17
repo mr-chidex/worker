@@ -4,7 +4,6 @@ const Footer: FC = () => {
   return (
     <footer>
       <div>
-        {" "}
         Designed by{" "}
         <a
           href="https://github.com/mr-chidex"

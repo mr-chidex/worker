@@ -30,7 +30,7 @@ export const orderReducer = (
       return { ...state, orders: [] };
 
     case CHANGETHEME:
-      if (state.payload === "dark") {
+      if (action.payload === "dark") {
         localStorage.setItem("theme", "dark");
       } else {
         localStorage.setItem("theme", "light");

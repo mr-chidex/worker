@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes as Router, Route } from "react-router-dom";
 import Home from "./pages/Index";
 import Orders from "./pages/Orders";
