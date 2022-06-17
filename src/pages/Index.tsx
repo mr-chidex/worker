@@ -17,6 +17,7 @@ const Home: FC = () => {
   const { dispatch } = useContext(AppContext);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     (async () => {
       try {
         const { data } = await server.get("/");

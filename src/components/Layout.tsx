@@ -12,6 +12,7 @@ import Header from "./Header";
 import { AppContext } from "./Context";
 import { theme } from "../utils/theme";
 
+import { motion, AnimatePresence } from "framer-motion";
 interface Props {
   window?: () => Window;
   children: React.ReactElement;
@@ -62,6 +63,7 @@ export default function Layout(props: Props) {
         </Toolbar>
       </AppBar>
       <Toolbar id="back-to-top-anchor" style={{ background: "blue" }} />
+
       <div
         style={{
           background: state.theme === "light" ? theme.light : theme.dark,
@@ -69,7 +71,16 @@ export default function Layout(props: Props) {
         }}
       >
         <Container className="main" maxWidth="xl">
-          <Box sx={{ my: 4 }}>{props.children}</Box>
+          <AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0.2, x: -1000 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -1000 }}
+              transition={{ duration: 1 }}
+            >
+              <Box sx={{ my: 4 }}>{props.children}</Box>
+            </motion.div>
+          </AnimatePresence>
         </Container>
       </div>
       <ScrollTop {...props}>
