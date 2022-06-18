@@ -67,7 +67,7 @@ export default function Layout(props: Props) {
       <div
         style={{
           background: state.theme === "light" ? theme.light : theme.dark,
-          paddingTop: "10px",
+          paddingTop: "5px",
         }}
       >
         <Container className="main" maxWidth="xl">

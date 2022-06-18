@@ -26,7 +26,7 @@ const OrderSuccess = () => {
         }}
       >
         <Paper sx={{ padding: "1rem", width: "80%" }}>
-          <h3 style={{ textAlign: "center" }}>Order Successfully Placed</h3>
+          <h2 style={{ textAlign: "center" }}>Order Successfully Placed</h2>
 
           <div style={{ textAlign: "center" }}>
             <CheckCircleIcon
