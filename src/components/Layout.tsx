@@ -66,7 +66,7 @@ export default function Layout(props: Props) {
 
       <div
         style={{
-          background: state.theme === "light" ? theme.light : theme.dark,
+          background: state.theme === "light" ? theme.light : theme.transparent,
           paddingTop: "5px",
         }}
       >

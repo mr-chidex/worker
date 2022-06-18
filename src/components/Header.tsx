@@ -1,4 +1,5 @@
-import { LightMode } from "@mui/icons-material";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { Chip, IconButton } from "@mui/material";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
@@ -29,11 +30,11 @@ const Header = () => {
           </NavLink>
           {state.theme === "dark" ? (
             <IconButton onClick={() => changeTheme("light")}>
-              <LightMode sx={{ color: "#fff" }} />
+              <DarkModeIcon sx={{ color: "#111" }} />
             </IconButton>
           ) : (
             <IconButton onClick={() => changeTheme("dark")}>
-              <LightMode sx={{ color: "#111" }} />
+              <Brightness7Icon sx={{ color: "#fff" }} />
             </IconButton>
           )}
         </div>
